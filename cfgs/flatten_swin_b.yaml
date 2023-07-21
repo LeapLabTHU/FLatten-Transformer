@@ -1,0 +1,13 @@
+MODEL:
+  TYPE: flatten_swin
+  NAME: flatten_swin_base_patch4_224
+  DROP_PATH_RATE: 0.5
+  SWIN:
+    EMBED_DIM: 128
+    DEPTHS: [ 2, 2, 18, 2 ]
+    NUM_HEADS: [ 4, 8, 16, 32 ]
+    WINDOW_SIZE: 56
+  LA:
+    ATTN_TYPE: LLSS
+DATA:
+  BATCH_SIZE: 64
