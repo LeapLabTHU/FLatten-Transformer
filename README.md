@@ -162,14 +162,6 @@ python -m torch.distributed.launch --nproc_per_node=8 main_ema.py --cfg ./cfgs/f
 
 This code is developed on the top of [Swin Transformer](https://github.com/microsoft/Swin-Transformer). The computational resources supporting this work are provided by [Hangzhou High-Flyer AI Fundamental Research Co.,Ltd](https://www.high-flyer.cn/)
 
-## Citation
-
-If you find our work is useful in your research, please consider citing:
-
-```
-to be done
-```
-
 ## Contact
 
 If you have any questions, please feel free to contact the authors. 
