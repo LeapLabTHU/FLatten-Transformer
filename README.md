@@ -47,10 +47,10 @@ Based on different model architectures, we each provide a pretrained model, as l
 
 | model  | acc@1 | config | pretrained weights |
 | :---: | :---: | :---: | :---: |
-| FLatten-PVT-T | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
-| FLatten-PVTv2-B0 | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
-| FLatten-Swin-T | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
-| FLatten-CSwin-T | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
+| FLatten-PVT-T | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/3e32e4537c1a4ba6b2d3/?dl=1) |
+| FLatten-PVTv2-B0 | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/ee8d9bc4ab1e409ebc94/?dl=1) |
+| FLatten-Swin-T | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/4847c0b56f1748739fa8/?dl=1) |
+| FLatten-CSwin-T | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/e8d9fb99798b444c9db4/?dl=1) |
 
 Evaluate one model on ImageNet:
 
