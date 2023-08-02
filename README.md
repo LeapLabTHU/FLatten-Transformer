@@ -8,16 +8,16 @@ This repo contains the official **PyTorch** code and pre-trained models for FLat
 
 ### Motivation
 
-<img src="figures/attention.png" alt="Motivation" style="zoom: 30%;" />
+<img src="figures/attention.png" alt="Motivation" style="zoom: 25%;" />
 
 The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has been a long-standing problem when applying Transformer models to vision tasks. Apart from reducing attention regions, linear attention is also considered as an effective solution to avoid excessive computation costs. By approximating Softmax with carefully designed mapping functions, linear attention can switch the computation order in the self-attention operation and achieve linear complexity $\mathcal{O}(N)$. Nevertheless, current linear attention approaches either suffer from severe performance drop or involve additional computation overhead from the mapping function. In this paper, we propose a novel **Focused Linear Attention** module to achieve both high efficiency and expressiveness.
 
 
 ### Method
 
-<img src="figures/fp.png" alt="Method" style="zoom:25%;" />
+<img src="figures/fp.png" alt="Method" style="zoom:20%;" />
 
-<img src="figures/rank.png" alt="Method" style="zoom:25%;" />
+<img src="figures/rank.png" alt="Method" style="zoom:20%;" />
 
  In this paper, we first perform a detailed analysis of the inferior performances of linear attention from two perspectives: focus ability and feature diversity. Then, we introduce a simple yet effective mapping function and an efficient rank restoration module and propose our **Focused Linear Attention (FLatten)** which adequately addresses these concerns and achieves high efficiency and expressive capability.
 
@@ -25,11 +25,11 @@ The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has be
 
 - Comparison of different models on ImageNet-1K.
 
-<img src="figures/result1.png" alt="Results" style="zoom:35%;" />
+<img src="figures/result1.png" alt="Results" style="zoom:25%;" />
 
 - Accuracy-Runtime curve on ImageNet.
 
-<img src="figures/result2.png" alt="Results" style="zoom:50%;" />
+<img src="figures/result2.png" alt="Results" style="zoom:25%;" />
 
 ## Dependencies
 
@@ -40,6 +40,33 @@ The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has be
 - timm == 0.4.12
 - einops
 - yacs
+
+## Data preparation
+
+The ImageNet dataset should be prepared as follows:
+
+```
+$ tree data
+imagenet
+├── train
+│   ├── class1
+│   │   ├── img1.jpeg
+│   │   ├── img2.jpeg
+│   │   └── ...
+│   ├── class2
+│   │   ├── img3.jpeg
+│   │   └── ...
+│   └── ...
+└── val
+    ├── class1
+    │   ├── img4.jpeg
+    │   ├── img5.jpeg
+    │   └── ...
+    ├── class2
+    │   ├── img6.jpeg
+    │   └── ...
+    └── ...
+```
 
 ## Pretrained Models
 
