@@ -2,7 +2,7 @@
 
 This repo contains the official **PyTorch** code and pre-trained models for FLatten Transformer (ICCV 2023).
 
-+ [FLatten Transformer: Vision Transformer with Focused Linear Attention](https://arxiv.org)
++ [FLatten Transformer: Vision Transformer with Focused Linear Attention](https://arxiv.org/abs/2308.00442)
 
 ## Introduction
 
@@ -47,10 +47,10 @@ Based on different model architectures, we each provide a pretrained model, as l
 
 | model  | acc@1 | config | pretrained weights |
 | :---: | :---: | :---: | :---: |
-| FLatten-PVT-T | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/) |
-| FLatten-PVTv2-B0 | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/) |
-| FLatten-Swin-T | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/) |
-| FLatten-CSwin-T | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/) |
+| FLatten-PVT-T | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
+| FLatten-PVTv2-B0 | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
+| FLatten-Swin-T | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
+| FLatten-CSwin-T | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud (In process)](https://cloud.tsinghua.edu.cn/) |
 
 Evaluate one model on ImageNet:
 
