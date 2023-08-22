@@ -83,14 +83,17 @@ imagenet
 
 ## Pretrained Models
 
-Based on different model architectures, we each provide a pretrained model, as listed below.
+Based on different model architectures, we provide several pretrained models, as listed below.
 
-| model  | acc@1 | config | pretrained weights |
-| :---: | :---: | :---: | :---: |
-| FLatten-PVT-T | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/3e32e4537c1a4ba6b2d3/?dl=1) |
-| FLatten-PVTv2-B0 | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/ee8d9bc4ab1e409ebc94/?dl=1) |
-| FLatten-Swin-T | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/4847c0b56f1748739fa8/?dl=1) |
-| FLatten-CSwin-T | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/e8d9fb99798b444c9db4/?dl=1) |
+| model  | Reso | acc@1 | config | pretrained weights |
+| :---: | :---: | :---: | :---: | :---: |
+| FLatten-PVT-T | $224^2$ | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/3e32e4537c1a4ba6b2d3/?dl=1) |
+| FLatten-PVTv2-B0 | $224^2$ | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/ee8d9bc4ab1e409ebc94/?dl=1) |
+| FLatten-Swin-T | $224^2$ | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/4847c0b56f1748739fa8/?dl=1) |
+| FLatten-Swin-S | $224^2$ | 83.5 (+0.5) | [config](cfgs/flatten_swin_s.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/639179967fc94933b750/?dl=1) |
+| FLatten-Swin-B | $224^2$ | 83.8 (+0.3) | [config](cfgs/flatten_swin_b.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/81b4249a41a64daca223/?dl=1) |
+| FLatten-Swin-B | $384^2$ | 85.0 (+0.5) | [config](cfgs/flatten_swin_b_384.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/42545b46051c42deab77/?dl=1) |
+| FLatten-CSwin-T | $224^2$ | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/e8d9fb99798b444c9db4/?dl=1) |
 
 Evaluate one model on ImageNet:
 
@@ -98,7 +101,7 @@ Evaluate one model on ImageNet:
 python -m torch.distributed.launch --nproc_per_node=8 main.py --cfg <path-to-config-file> --data-path <imagenet-path> --output <output-path> --eval --resume <path-to-pretrained-weights>
 ```
 
-Outputs of the four pretrained models are:
+Outputs of the four T/B0 pretrained models are:
 
 ```
 [2023-07-21 07:50:09 flatten_pvt_tiny] (main.py 294): INFO  * Acc@1 77.758 Acc@5 93.910
@@ -202,10 +205,23 @@ python -m torch.distributed.launch --nproc_per_node=8 main_ema.py --cfg ./cfgs/f
 
 This code is developed on the top of [Swin Transformer](https://github.com/microsoft/Swin-Transformer). The computational resources supporting this work are provided by [Hangzhou High-Flyer AI Fundamental Research Co.,Ltd](https://www.high-flyer.cn/)
 
+## Citation
+
+If you find this repo helpful, please consider citing us.
+
+```latex
+@InProceedings{han2023flatten,
+  title={FLatten Transformer: Vision Transformer using Focused Linear Attention},
+  author={Han, Dongchen and Pan, Xuran and Han, Yizeng and Song, Shiji and Huang, Gao},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year={2023}
+}
+```
+
 ## Contact
 
 If you have any questions, please feel free to contact the authors. 
 
-Dongchen Han: [hdc19@mails.tsinghua.edu.cn](mailto:hdc19@mails.tsinghua.edu.cn)
+Dongchen Han: [hdc23@mails.tsinghua.edu.cn](mailto:hdc23@mails.tsinghua.edu.cn)
 
 Xuran Pan:  [pxr18@mails.tsinghua.edu.cn](mailto:pxr18@mails.tsinghua.edu.cn)
