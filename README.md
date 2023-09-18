@@ -87,13 +87,13 @@ Based on different model architectures, we provide several pretrained models, as
 
 | model  | Reso | acc@1 | config | pretrained weights |
 | :---: | :---: | :---: | :---: | :---: |
-| FLatten-PVT-T | $224^2$ | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/3e32e4537c1a4ba6b2d3/?dl=1) |
-| FLatten-PVTv2-B0 | $224^2$ | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/ee8d9bc4ab1e409ebc94/?dl=1) |
-| FLatten-Swin-T | $224^2$ | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/4847c0b56f1748739fa8/?dl=1) |
-| FLatten-Swin-S | $224^2$ | 83.5 (+0.5) | [config](cfgs/flatten_swin_s.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/639179967fc94933b750/?dl=1) |
-| FLatten-Swin-B | $224^2$ | 83.8 (+0.3) | [config](cfgs/flatten_swin_b.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/81b4249a41a64daca223/?dl=1) |
-| FLatten-Swin-B | $384^2$ | 85.0 (+0.5) | [config](cfgs/flatten_swin_b_384.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/42545b46051c42deab77/?dl=1) |
-| FLatten-CSwin-T | $224^2$ | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/e8d9fb99798b444c9db4/?dl=1) |
+| FLatten-PVT-T | $224^2$ | 77.8 (+2.7) | [config](cfgs/flatten_pvt_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/3ab1d773f19d45648690/?dl=1) |
+| FLatten-PVTv2-B0 | $224^2$ | 71.1 (+0.6) | [config](cfgs/flatten_pvt_v2_b0.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/5d1f01532b104da28e7b/?dl=1) |
+| FLatten-Swin-T | $224^2$ | 82.1 (+0.8) | [config](cfgs/flatten_swin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/e1518e76703e4e57a7f2/?dl=1) |
+| FLatten-Swin-S | $224^2$ | 83.5 (+0.5) | [config](cfgs/flatten_swin_s.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/94188e52af354bf4a88b/?dl=1) |
+| FLatten-Swin-B | $224^2$ | 83.8 (+0.3) | [config](cfgs/flatten_swin_b.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/7a9e5186bad04e7fb3a9/?dl=1) |
+| FLatten-Swin-B | $384^2$ | 85.0 (+0.5) | [config](cfgs/flatten_swin_b_384.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/0d0330cf2e5249f1abb6/?dl=1) |
+| FLatten-CSwin-T | $224^2$ | 83.1 (+0.4) | [config](cfgs/flatten_cswin_t.yaml) | [TsinghuaCloud](https://cloud.tsinghua.edu.cn/f/48ba765ba8b0451d9d5a/?dl=1) |
 
 Evaluate one model on ImageNet:
 
