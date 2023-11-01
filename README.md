@@ -11,8 +11,6 @@ This repo contains the official **PyTorch** code and pre-trained models for FLat
 <p align="center">
     <img src="figures/attention.png" width= "600">
 </p>
-
-
 The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has been a long-standing problem when applying Transformer models to vision tasks. Apart from reducing attention regions, linear attention is also considered as an effective solution to avoid excessive computation costs. By approximating Softmax with carefully designed mapping functions, linear attention can switch the computation order in the self-attention operation and achieve linear complexity $\mathcal{O}(N)$. Nevertheless, current linear attention approaches either suffer from severe performance drop or involve additional computation overhead from the mapping function. In this paper, we propose a novel **Focused Linear Attention** module to achieve both high efficiency and expressiveness.
 
 
@@ -25,8 +23,6 @@ The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has be
 <p align="center">
     <img src="figures/rank.png" width= "600">
 </p>
-
-
  In this paper, we first perform a detailed analysis of the inferior performances of linear attention from two perspectives: focus ability and feature diversity. Then, we introduce a simple yet effective mapping function and an efficient rank restoration module and propose our **Focused Linear Attention (FLatten)** which adequately addresses these concerns and achieves high efficiency and expressive capability.
 
 ### Results
@@ -36,8 +32,6 @@ The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has be
 <p align="center">
     <img src="figures/result1.png" width= "500">
 </p>
-
-
 - Accuracy-Runtime curve on ImageNet.
 
 <p align="center">
@@ -200,6 +194,24 @@ Fine-tune a `FLatten-CSwin-B` model pre-trained on 224x224 resolution to 384x384
 ```shell
 python -m torch.distributed.launch --nproc_per_node=8 main_ema.py --cfg ./cfgs/flatten_cswin_b_384.yaml --data-path <imagenet-path> --output <output-path> --pretrained <path-to-224x224-pretrained-weights> --model-ema --model-ema-decay 0.99982
 ```
+
+## Visualization
+
+We provide code for visualizing flatten attention. For example, to visualize flatten attention in FLatten-Swin-T, add the following to [this line](https://github.com/LeapLabTHU/FLatten-Transformer/blob/a02519f2ea97ea0973f4983130c4b4ae435ae7e6/models/flatten_swin.py#L231C1-L231C1). 
+
+```python
+from visualize import AttnVisualizer
+visualizer = AttnVisualizer(qk=[q, k], kernel=self.dwc.weight, name='flatten_swin_t')
+visualizer.visualize_all_attn(max_num=196, image='./visualize/img_ori_00809.png')
+```
+
+Then run:
+
+```shell
+python visualize.py
+```
+
+**Note:** Don't forget to modify the path of FLatten-Swin-T pretrained weight in `visualize.py`.
 
 ## Acknowledgements
 
