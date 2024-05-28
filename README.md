@@ -6,7 +6,7 @@ This repo contains the official **PyTorch** code and pre-trained models for FLat
 
 ## Updates
 
-- May 28 2024: **Solve numerical instability problem.** Now FLatten Transformers can be trained with auto mixed precision (amp) or float16.
+- May 28 2024: **Fix numerical instability problem.** Now FLatten Transformers can be trained with auto mixed precision (amp) or float16.
 
 ## Introduction
 
