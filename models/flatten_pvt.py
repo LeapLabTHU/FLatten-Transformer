@@ -133,24 +133,21 @@ class FocusedLinearAttention(nn.Module):
         k = k ** focusing_factor
         q = (q / q.norm(dim=-1, keepdim=True)) * q_norm
         k = (k / k.norm(dim=-1, keepdim=True)) * k_norm
-        q, k, v = (rearrange(x, "b n (h c) -> (b h) n c", h=self.num_heads) for x in [q, k, v])
-        i, j, c, d = q.shape[-2], k.shape[-2], k.shape[-1], v.shape[-1]
 
-        z = 1 / (torch.einsum("b i c, b c -> b i", q, k.sum(dim=1)) + 1e-6)
-        if i * j * (c + d) > c * d * (i + j):
-            kv = torch.einsum("b j c, b j d -> b c d", k, v)
-            x = torch.einsum("b i c, b c d, b i -> b i d", q, kv, z)
-        else:
-            qk = torch.einsum("b i c, b j c -> b i j", q, k)
-            x = torch.einsum("b i j, b j d, b i -> b i d", qk, v, z)
+        q = q.reshape(B, N, self.num_heads, -1).permute(0, 2, 1, 3)
+        k = k.reshape(B, N, self.num_heads, -1).permute(0, 2, 1, 3)
+        v = v.reshape(B, N, self.num_heads, -1).permute(0, 2, 1, 3)
+
+        z = 1 / (q @ k.mean(dim=-2, keepdim=True).transpose(-2, -1) + 1e-6)
+        kv = (k.transpose(-2, -1) * (N ** -0.5)) @ (v * (N ** -0.5))
+        x = q @ kv * z
 
         if self.sr_ratio > 1:
             v = nn.functional.interpolate(v.permute(0, 2, 1), size=x.shape[1], mode='linear').permute(0, 2, 1)
-        num = int(v.shape[1] ** 0.5)
-        feature_map = rearrange(v, "b (w h) c -> b c w h", w=num, h=num)
-        feature_map = rearrange(self.dwc(feature_map), "b c w h -> b (w h) c")
-        x = x + feature_map
-        x = rearrange(x, "(b h) n c -> b n (h c)", h=self.num_heads)
+        H = W = int(N ** 0.5)
+        x = x.transpose(1, 2).reshape(B, N, C)
+        v = v.reshape(B * self.num_heads, H, W, -1).permute(0, 3, 1, 2)
+        x = x + self.dwc(v).reshape(B, C, N).permute(0, 2, 1)
 
         x = self.proj(x)
         x = self.proj_drop(x)

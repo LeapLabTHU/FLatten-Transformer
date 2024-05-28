@@ -195,7 +195,7 @@ class FocusedLinearAttention(nn.Module):
         x = x.permute(0, 2, 4, 1, 3, 5).contiguous().reshape(-1, C, H_sp, W_sp)  ### B', C, H', W'
 
         lepe = func(x)  ### B', C, H', W'
-        lepe = lepe.reshape(-1, C // self.num_heads, H_sp * W_sp).permute(0, 2, 1).contiguous()
+        lepe = lepe.reshape(-1, C, H_sp * W_sp).permute(0, 2, 1).contiguous()
 
         x = x.reshape(-1, C, self.H_sp * self.W_sp).permute(0, 2, 1).contiguous()
         return x, lepe
@@ -230,22 +230,19 @@ class FocusedLinearAttention(nn.Module):
         k = k ** focusing_factor
         q = (q / q.norm(dim=-1, keepdim=True)) * q_norm
         k = (k / k.norm(dim=-1, keepdim=True)) * k_norm
-        q, k, v = (rearrange(x, "b n (h c) -> (b h) n c", h=self.num_heads) for x in [q, k, v])
-        i, j, c, d = q.shape[-2], k.shape[-2], k.shape[-1], v.shape[-1]
 
-        z = 1 / (torch.einsum("b i c, b c -> b i", q, k.sum(dim=1)) + 1e-6)
-        if i * j * (c + d) > c * d * (i + j):
-            kv = torch.einsum("b j c, b j d -> b c d", k, v)
-            x = torch.einsum("b i c, b c d, b i -> b i d", q, kv, z)
-        else:
-            qk = torch.einsum("b i c, b j c -> b i j", q, k)
-            x = torch.einsum("b i j, b j d, b i -> b i d", qk, v, z)
+        q = q.reshape(B, L, self.num_heads, -1).permute(0, 2, 1, 3)
+        k = k.reshape(B, L, self.num_heads, -1).permute(0, 2, 1, 3)
+        v = v.reshape(B, L, self.num_heads, -1).permute(0, 2, 1, 3)
 
-        feature_map = rearrange(v, "b (h w) c -> b c h w", h=self.H_sp, w=self.W_sp)
-        feature_map = rearrange(self.dwc(feature_map), "b c h w -> b (h w) c")
-        x = x + feature_map
-        x = x + lepe
-        x = rearrange(x, "(b h) n c -> b n (h c)", h=self.num_heads)
+        z = 1 / (q @ k.mean(dim=-2, keepdim=True).transpose(-2, -1) + 1e-6)
+        kv = (k.transpose(-2, -1) * (L ** -0.5)) @ (v * (L ** -0.5))
+        x = q @ kv * z
+
+        x = x.transpose(1, 2).reshape(B, L, C)
+        v = v.reshape(B * self.num_heads, self.H_sp, self.W_sp, -1).permute(0, 3, 1, 2)
+        x = x + self.dwc(v).reshape(B, C, L).permute(0, 2, 1) + lepe
+
         x = windows2img(x, self.H_sp, self.W_sp, H, W).view(B, -1, C)
 
         return x

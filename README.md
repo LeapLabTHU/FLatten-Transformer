@@ -4,6 +4,10 @@ This repo contains the official **PyTorch** code and pre-trained models for FLat
 
 + [FLatten Transformer: Vision Transformer with Focused Linear Attention](https://arxiv.org/abs/2308.00442)
 
+## Updates
+
+- May 28 2024: **Solve numerical instability problem.** Now FLatten Transformers can be trained with auto mixed precision (amp) or float16.
+
 ## Introduction
 
 ### Motivation
