@@ -201,7 +201,7 @@ python -m torch.distributed.launch --nproc_per_node=8 main_ema.py --cfg ./cfgs/f
 
 ## Visualization
 
-We provide code for visualizing flatten attention. For example, to visualize flatten attention in FLatten-Swin-T, add the following to [this line](https://github.com/LeapLabTHU/FLatten-Transformer/blob/a02519f2ea97ea0973f4983130c4b4ae435ae7e6/models/flatten_swin.py#L231C1-L231C1). 
+We provide code for visualizing flatten attention. For example, to visualize flatten attention in FLatten-Swin-T, add the following to [this line](https://github.com/LeapLabTHU/FLatten-Transformer/blob/96b7dac65e9688d947a3afa01a0c70b92d9654c8/models/flatten_swin.py#L229). 
 
 ```python
 from visualize import AttnVisualizer
