@@ -15,6 +15,7 @@ This repo contains the official **PyTorch** code and pre-trained models for FLat
 <p align="center">
     <img src="figures/attention.png" width= "600">
 </p>
+
 The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has been a long-standing problem when applying Transformer models to vision tasks. Apart from reducing attention regions, linear attention is also considered as an effective solution to avoid excessive computation costs. By approximating Softmax with carefully designed mapping functions, linear attention can switch the computation order in the self-attention operation and achieve linear complexity $\mathcal{O}(N)$. Nevertheless, current linear attention approaches either suffer from severe performance drop or involve additional computation overhead from the mapping function. In this paper, we propose a novel **Focused Linear Attention** module to achieve both high efficiency and expressiveness.
 
 
@@ -27,6 +28,7 @@ The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has be
 <p align="center">
     <img src="figures/rank.png" width= "600">
 </p>
+
  In this paper, we first perform a detailed analysis of the inferior performances of linear attention from two perspectives: focus ability and feature diversity. Then, we introduce a simple yet effective mapping function and an efficient rank restoration module and propose our **Focused Linear Attention (FLatten)** which adequately addresses these concerns and achieves high efficiency and expressive capability.
 
 ### Results
@@ -36,6 +38,7 @@ The quadratic computation complexity of self-attention $\mathcal{O}(N^2)$ has be
 <p align="center">
     <img src="figures/result1.png" width= "500">
 </p>
+
 - Accuracy-Runtime curve on ImageNet.
 
 <p align="center">
