@@ -118,6 +118,7 @@ class FocusedLinearAttention(nn.Module):
         else:
             kv = self.kv(x).reshape(B, -1, 2, C).permute(2, 0, 1, 3)
         k, v = kv[0], kv[1]
+        n = k.shape[1]
 
         k = k + self.positional_encoding
         focusing_factor = self.focusing_factor
@@ -135,16 +136,15 @@ class FocusedLinearAttention(nn.Module):
         k = (k / k.norm(dim=-1, keepdim=True)) * k_norm
 
         q = q.reshape(B, N, self.num_heads, -1).permute(0, 2, 1, 3)
-        k = k.reshape(B, N, self.num_heads, -1).permute(0, 2, 1, 3)
-        v = v.reshape(B, N, self.num_heads, -1).permute(0, 2, 1, 3)
+        k = k.reshape(B, n, self.num_heads, -1).permute(0, 2, 1, 3)
+        v = v.reshape(B, n, self.num_heads, -1).permute(0, 2, 1, 3)
 
         z = 1 / (q @ k.mean(dim=-2, keepdim=True).transpose(-2, -1) + 1e-6)
-        kv = (k.transpose(-2, -1) * (N ** -0.5)) @ (v * (N ** -0.5))
+        kv = (k.transpose(-2, -1) * (n ** -0.5)) @ (v * (n ** -0.5))
         x = q @ kv * z
 
         if self.sr_ratio > 1:
-            v = nn.functional.interpolate(v.permute(0, 2, 1), size=x.shape[1], mode='linear').permute(0, 2, 1)
-        H = W = int(N ** 0.5)
+            v = nn.functional.interpolate(v.transpose(-2, -1).reshape(B * self.num_heads, -1, n), size=N, mode='linear').reshape(B, self.num_heads, -1, N).transpose(-2, -1)
         x = x.transpose(1, 2).reshape(B, N, C)
         v = v.reshape(B * self.num_heads, H, W, -1).permute(0, 3, 1, 2)
         x = x + self.dwc(v).reshape(B, C, N).permute(0, 2, 1)
