@@ -2,7 +2,7 @@
 
 This repo contains the official **PyTorch** code and pre-trained models for FLatten Transformer (ICCV 2023).
 
-+ [FLatten Transformer: Vision Transformer with Focused Linear Attention](https://arxiv.org/abs/2308.00442)
++ [FLatten Transformer: Vision Transformer with Focused Linear Attention](https://arxiv.org/abs/2308.00442) [[中文讲解]](https://www.bilibili.com/video/BV14j41127da/?share_source=copy_web&vd_source=b3825529abfc8e637393b7471e25233a)
 
 ## Updates
 
